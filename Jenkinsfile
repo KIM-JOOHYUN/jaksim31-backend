@@ -14,7 +14,7 @@ pipeline{
         stages{
             stage('Maven Jar Build') {
                 steps {
-                    sh 'mvn clean install -Dspring.profiles.active=prod -P prod'
+                    sh 'mvn clean install -Dspring.profiles.active=local -P local'
                 }
 
                 post {
