@@ -47,8 +47,7 @@ pipeline{
                     }
                 }
             }
-        }
-        stage('Maven Jar Build') {
+            stage('Maven Jar Build') {
                 steps {
                     sh 'mvn clean install -Dspring.profiles.active=local -P local'
                 }
@@ -61,5 +60,6 @@ pipeline{
                           echo 'Maven jar build success !'
                         }
                 }
+            }
         }
 }
