@@ -29,7 +29,7 @@ pipeline{
             }
             stage('SonarQube analysis') {
                steps {
-                      sh 'mvn sonar:sonar -Dsonar.java.binaries=target/classes -Dsonar.host.url=http://210.109.61.124:8080 -Dsonar.projectKey=test -Dsonar.projectName= ${env.BUILD_NUMBER} -Dsonar.login=${sonarqubeCredential}'
+                      sh './mvnw sonar:sonar -Dsonar.java.binaries=target/classes -Dsonar.host.url=http://210.109.61.124:8080 -Dsonar.projectKey=test -Dsonar.projectName=4568 -Dsonar.login=sqa_20f91e5fcfb538fc4909b69ab5f8bb63a896f129'
                }
            }
         }
