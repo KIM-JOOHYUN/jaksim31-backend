@@ -31,13 +31,12 @@ pipeline{
                 }
             }
 
-            stage('Checkout Application Git Branch'){
+            stage('Checkout Properties Git Branch'){
                 agent any
                 steps{
                     git credentialsId: "${gitCredential}",
-                    url: "${gitSrcUrl}",
-                    branch: 'main',
-                    submodules : true
+                    url: "${gitPropertiesUrl}",
+                    branch: 'main'
                 }
                 post{
                     failure{
