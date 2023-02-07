@@ -8,35 +8,18 @@ pipeline{
             dockerHubRegistry = 'kjh99723/jaksim31-backend'
             dockerHubRegistryCredential = 'dockerhub'
             dockerImageName = 'jaksim31-backend'
-            gitCredential = 'github'
+            gitCredentialId = 'github'
             gitSrcUrl = 'git@github.com:KIM-JOOHYUN/jaksim31-backend.git'
             gitPropertiesUrl = 'git@github.com:KSWA-SWEEP/jaksim31-properties.git'
         }
 
         stages{
-            stage('Checkout Application Git Branch'){
-                agent any
-                steps{
-                    git credentialsId: "${gitCredential}",
-                    url: "${gitSrcUrl}",
-                    branch: 'main'
-                }
-                post{
-                    failure{
-                        echo '!! Repository clone failure1!!'
-                    }
-                    success{
-                        echo 'Repository clone success!!'
-                    }
-                }
-            }
-
             stage('Checkout Properties Git Branch'){
                 agent any
                 steps{
-                    git credentialsId: "${gitCredential}",
-                    url: "${gitPropertiesUrl}",
-                    branch: 'main'
+                    git credentialsId: "${gitCredentialId}",
+                        url: "${gitPropertiesUrl}",
+                        branch: 'main'
                 }
                 post{
                     failure{
