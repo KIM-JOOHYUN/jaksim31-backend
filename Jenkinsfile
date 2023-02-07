@@ -17,7 +17,7 @@ pipeline{
             stage('Checkout Properties Git Branch'){
                 agent any
                 steps{
-                    git credentialsId: "${gitCredentialId}",
+                    git credentialsId: credentials('gitcredential'),
                         url: "${gitPropertiesUrl}",
                         branch: 'main'
                 }
