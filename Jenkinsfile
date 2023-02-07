@@ -1,14 +1,14 @@
 pipeline{
     agent any
         tools {
-        maven 'M3'
+            maven 'M3'
         }
 
         environment {
             dockerHubRegistry = 'kjh99723/jaksim31-backend'
             dockerHubRegistryCredential = 'dockerhub'
             dockerImageName = 'jaksim31-backend'
-            gitCredentialId = 'github'
+            gitCredentialId = 'gitcredential'
             gitSrcUrl = 'git@github.com:KIM-JOOHYUN/jaksim31-backend.git'
             gitPropertiesUrl = 'git@github.com:KSWA-SWEEP/jaksim31-properties.git'
         }
