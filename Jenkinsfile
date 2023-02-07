@@ -13,11 +13,13 @@ pipeline{
             gitPropertiesUrl = 'git@github.com:KSWA-SWEEP/jaksim31-properties.git'
         }
 
+
         stages{
             stage('Maven Jar Build') {
                 steps {
                     sh 'mvn clean install -Dspring.profiles.active=local -P local'
                 }
+
 
                 post {
                         failure {
