@@ -9,6 +9,7 @@ pipeline{
             dockerImageName = 'jaksim31-backend'
             dockerHubRegistryCredential = 'dockerhub'
             sonarqubeCredential = '3b91d326-8669-4897-bbe0-a56eeca65131'
+
         }
 
         stages{
@@ -28,11 +29,7 @@ pipeline{
             }
             stage('SonarQube analysis') {
                steps {
-                   withSonarQubeEnv('SonarQube') {
-                       dir('backend') {
-                           sh './gradlew sonarqube'
-                       }
-                   }
+                      sh './mvnw sonar:sonar -Dsonar.java.binaries=target/classes -Dsonar.host.url=http://210.109.61.124:8080 -Dsonar.projectKey=test -Dsonar.projectName= ${env.BUILD_NUMBER} -Dsonar.login=${sonarqubeCredential}'
                }
            }
         }
