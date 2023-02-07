@@ -8,7 +8,7 @@ pipeline{
             dockerHubRegistry = 'kjh99723/jaksim31-backend'
             dockerHubRegistryCredential = 'dockerhub'
             dockerImageName = 'jaksim31-backend'
-            gitCredentialId = 'gitcredential'
+            gitCredentialId = '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'
             gitSrcUrl = 'git@github.com:KIM-JOOHYUN/jaksim31-backend.git'
             gitPropertiesUrl = 'git@github.com:KSWA-SWEEP/jaksim31-properties.git'
         }
