@@ -14,22 +14,7 @@ pipeline{
         }
 
         stages{
-            stage('Checkout Properties Git Branch'){
-                agent any
-                steps{
-                    git credentialsId: "${gitCredentialId}",
-                        url: "${gitPropertiesUrl}",
-                        branch: 'main'
-                }
-                post{
-                    failure{
-                        echo '!! Repository clone failure1!!'
-                    }
-                    success{
-                        echo 'Repository clone success!!'
-                    }
-                }
-            }
+
             stage('Maven Jar Build') {
                 steps {
                     sh 'mvn clean install -Dspring.profiles.active=local -P local'
