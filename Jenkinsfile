@@ -18,6 +18,7 @@ pipeline{
                 steps {
                     sh 'mvn clean install -Dspring.profiles.active=local -P local'
                 }
+
                 post {
                         failure {
                           slackSend (channel: '#jenkins', color: '#FF0000', message: "Maven jar Build Failure !: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
