@@ -6,23 +6,19 @@ pipeline{
 
         environment {
             dockerHubRegistry = 'kjh99723/jaksim31-backend'
-            dockerHubRegistryCredential = 'dockerhub'
             dockerImageName = 'jaksim31-backend'
-            gitCredentialId = 'github'
-            gitSrcUrl = 'git@github.com:KIM-JOOHYUN/jaksim31-backend.git'
-            gitPropertiesUrl = 'git@github.com:KSWA-SWEEP/jaksim31-properties.git'
+            dockerHubRegistryCredential = 'dockerhub'
+            sonarqubeCredential = '3b91d326-8669-4897-bbe0-a56eeca65131'
         }
 
         stages{
             stage('Maven Jar Build') {
                 steps {
-                    sh 'mvn clean install -Dspring.profiles.active=local -P local'
+                    sh 'mvn clean install -Dspring.profiles.active=prod -P prod'
                 }
-
 
                 post {
                         failure {
-                          slackSend (channel: '#jenkins', color: '#FF0000', message: "Maven jar Build Failure !: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                           echo 'Maven  jar build failure !'
                         }
                         success {
@@ -30,5 +26,14 @@ pipeline{
                         }
                 }
             }
+            stage('SonarQube analysis') {
+               steps {
+                   withSonarQubeEnv('SonarQube') {
+                       dir('backend') {
+                           sh './gradlew sonarqube'
+                       }
+                   }
+               }
+           }
         }
 }
